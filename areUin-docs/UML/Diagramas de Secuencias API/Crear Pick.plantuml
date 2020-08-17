@@ -1,0 +1,59 @@
+@startuml
+ title <font color=red size=10>Registrar Pick</font>
+
+boundary "WEB/Mobile" as ui
+control PicksKitchen as controller
+participant CustomPicksKitchenRepository as repoPicks
+participant picksTypesRepository
+participant categoryRepository
+participant rewardsModesRepository
+participant availableTicketsIntervalsRepository
+participant Picks
+participant categoryCustomRepository 
+participant ticketsValuesCustomRepository
+
+
+ui -> controller : [POST] /api/v2/picks {\n[{\n  startDate: '2018/01/01 01:00',\n  duration: 5.5,\n  availableTicketsIntervals: [1,2,3],\n  picksTypes: [],\n  rewardsModes: [2,3],\n  categories: [1,2,3],\n  ticketsValues: [1,2,3]\n }   \n]}
+activate controller
+
+Loop params.map 
+
+controller -> controller : registrerNewPick()
+activate controller
+   group CreatePickId
+	controller -> controller : createPickId( pick )
+	activate controller
+	controller -> picksTypesRepository : findOne({ id: pick.picksTypes })
+	activate picksTypesRepository
+	return pickType
+	controller -> categoryRepository : findOne({ id: pick.categories[0].id })
+	activate categoryRepository
+	return pickCategory
+	controller -> rewardsModesRepository : findOne({ id: id: pick.rewardsModes })
+	activate rewardsModesRepository
+	return pickRewardsMode
+	controller -> availableTicketsIntervalsRepository : findOne({ id: pick.availableTicketsIntervals })
+	activate availableTicketsIntervalsRepository
+	return pickAvailableTickets
+	controller -> Picks : findOne()
+	note right : Revisar esta implementación
+	activate Picks
+ 	return pickIdExists
+	return <font size=17 color=green><b>pickId</b></font>
+   end
+controller -> repoPicks : createNewPick( item )
+activate repoPicks
+return
+
+controller -> categoryCustomRepository : insertNewCategory( item.pickId , item.categories )
+activate categoryCustomRepository
+return
+
+controller -> ticketsValuesCustomRepository : insertNewTicketValue( item.pickId , item.ticketsValues )
+activate ticketsValuesCustomRepository
+return 
+end
+
+returnws
+return {status: OK}
+@enduml

@@ -1,0 +1,269 @@
+@startuml
+
+title Are U In - API - Version 0.0.2
+
+skinparam stereotypeCBackgroundColor<<representation>> DimGray
+skinparam stereotypeCBackgroundColor<<api>> Red
+skinparam stereotypeCBackgroundColor<<resource>> SpringGreen
+skinparam class {
+BackgroundColor<<api>> Yellow
+BackgroundColor<<representation>> Silver
+BackgroundColor<<resource>> YellowGreen
+}
+
+class "Are U In - API" <<api>>
+
+class "privileges" <<resource>> {
+__ http __
+get()
+}
+
+"Are U In - API" --> "privileges"
+
+class "roles" <<resource>> {
+__ http __
+get()
+}
+
+"Are U In - API" --> "roles"
+
+class "role" <<resource>> {
+__ http __
+post(body)
+}
+
+"Are U In - API" --> "role"
+
+class "{id}" <<resource>> {
+__ http __
+}
+
+"role" --> "{id}"
+
+class "privileges" <<resource>> {
+__ http __
+put(id,body)
+}
+
+"{id}" --> "privileges"
+
+class "add" <<resource>> {
+__ http __
+post(id,body)
+}
+
+"privileges" --> "add"
+
+class "countries" <<resource>> {
+__ http __
+get()
+put(body)
+post(body)
+}
+
+"Are U In - API" --> "countries"
+
+class "leagues" <<resource>> {
+__ http __
+get(offset,limit,sports,countries)
+put(body)
+}
+
+"Are U In - API" --> "leagues"
+
+class "login" <<resource>> {
+__ http __
+post(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body,key)
+}
+
+"Are U In - API" --> "login"
+
+class "logout" <<resource>> {
+__ http __
+patch(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret)
+}
+
+"Are U In - API" --> "logout"
+
+class "refresh-token" <<resource>> {
+__ http __
+patch(body)
+}
+
+"Are U In - API" --> "refresh-token"
+
+class "matches" <<resource>> {
+__ http __
+}
+
+"Are U In - API" --> "matches"
+
+class "status" <<resource>> {
+__ http __
+put(body)
+}
+
+"matches" --> "status"
+
+class "all" <<resource>> {
+__ http __
+put(body)
+}
+
+"status" --> "all"
+
+class "odds" <<resource>> {
+__ http __
+get(offset,limit,date,sports,countries,leagues,oddstypes)
+}
+
+"Are U In - API" --> "odds"
+
+class "periods" <<resource>> {
+__ http __
+get(leagues)
+put(body)
+post(body)
+}
+
+"Are U In - API" --> "periods"
+
+class "picks" <<resource>> {
+__ http __
+get(filters)
+post(picks)
+delete(picks)
+}
+
+"Are U In - API" --> "picks"
+
+class "pick" <<resource>> {
+__ http __
+}
+
+"Are U In - API" --> "pick"
+
+class "{id}" <<resource>> {
+__ http __
+get(id)
+}
+
+"pick" --> "{id}"
+
+class "sports" <<resource>> {
+__ http __
+get()
+put(body)
+post(body)
+}
+
+"Are U In - API" --> "sports"
+
+class "swagger" <<resource>> {
+__ http __
+}
+
+"Are U In - API" --> "swagger"
+
+class "checkemail" <<resource>> {
+__ http __
+post(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body)
+}
+
+"Are U In - API" --> "checkemail"
+
+class "changepassword" <<resource>> {
+__ http __
+post(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body)
+}
+
+"Are U In - API" --> "changepassword"
+
+class "checkusername" <<resource>> {
+__ http __
+post(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body)
+}
+
+"Are U In - API" --> "checkusername"
+
+class "forgotPassword" <<resource>> {
+__ http __
+post(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body)
+}
+
+"Are U In - API" --> "forgotPassword"
+
+class "profile" <<resource>> {
+__ http __
+get(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret)
+put(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body)
+}
+
+"Are U In - API" --> "profile"
+
+class "register" <<resource>> {
+__ http __
+post(Content-Type,Api-Version,Accept-Language,Operative-System,Api-Key,Api-Secret,body)
+}
+
+"Are U In - API" --> "register"
+
+class "users" <<resource>> {
+__ http __
+get()
+}
+
+"Are U In - API" --> "users"
+
+class "user" <<resource>> {
+__ http __
+}
+
+"Are U In - API" --> "user"
+
+class "{id}" <<resource>> {
+__ http __
+}
+
+"user" --> "{id}"
+
+class "role" <<resource>> {
+__ http __
+put(id,body)
+}
+
+"{id}" --> "role"
+
+package Representations/Messages <<Folder>> {
+class "ErrorResponse" <<representation>> { 
+__properties__
+message
+}
+class "UserProfile" <<representation>> { 
+__properties__
+firstname
+lastname
+gender
+maritalstatus
+birthdate
+country
+city
+province
+address
+zipcode
+phonenumber
+countrycode
+email
+stepone
+steptwo
+stepthree
+complete
+}
+}
+
+legend left
+created with pikturr (https://github.com/nrekretep/pikturr)
+2019-04-03T21:34:04.356Z
+endlegend
+
+@enduml

@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ER" version="4">
+  <OBJECT>
+    <ID name="ER" mc="Standard.ClassDiagram" uid="d83fbe85-9580-4f2d-a4ba-e1ff59034c03"/>
+    <PID name="project1" mc="Standard.Package" uid="d8b5a421-6b98-41df-a079-d7e3860b95ac"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">117</ATT>
+      <ATT name="UiData"><![CDATA[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]]></ATT>
+      <ATT name="Name"><![CDATA[ER]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Represented">
+        <ID name="sports" mc="Standard.Class" uid="070ea0b6-b33d-49a3-8b5d-da7e21813ae3"/>
+        <REFOBJ>
+          <ID name="id" mc="Standard.Attribute" uid="e8d83817-0391-457e-b203-2af06d9350a7"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="public_id" mc="Standard.Attribute" uid="341c7059-f426-4eaa-ac2f-263657a574db"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="name" mc="Standard.Attribute" uid="9bfd9581-7664-4228-944f-1ec6e35a9035"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="display_name" mc="Standard.Attribute" uid="7cb2b077-c61d-4788-9f3b-1bc40ade3614"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="created_at" mc="Standard.Attribute" uid="569763b9-db73-4b7a-ad8f-eac58dbbf2ef"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="updated_at" mc="Standard.Attribute" uid="7d742ea8-04bc-4715-8558-4cf48ee8d893"/>
+        </REFOBJ>
+        <ID name="Periods" mc="Standard.Class" uid="9450dd85-9e7a-4b1b-8bdc-1c7814e057fe"/>
+        <REFOBJ>
+          <ID name="id" mc="Standard.Attribute" uid="f431c92b-6f00-47f6-8e57-999bd8142d76"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="public_id" mc="Standard.Attribute" uid="22685a0d-b6ab-478c-a46c-14454fbbfa8b"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="odds_type_name" mc="Standard.Attribute" uid="aba010a4-2e2f-45d0-a51e-aba37f21c963"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="odss_type_label" mc="Standard.Attribute" uid="182644dc-0deb-419b-a06a-293ca201d958"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="period_name" mc="Standard.Attribute" uid="234f0ab6-0ae3-403f-80ee-140ca8b70b2d"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="period_label" mc="Standard.Attribute" uid="7b81a21a-f361-492d-860c-5893940fe502"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="created_at" mc="Standard.Attribute" uid="ca5e3414-1f2d-4e49-b80d-0b0e86dc045e"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="updated_at" mc="Standard.Attribute" uid="2bbc2a44-61fc-4f72-ba3f-cc1fe8a07982"/>
+        </REFOBJ>
+      </LINK>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="" mc="Infrastructure.Note" uid="e296fb58-456d-4abd-bce3-1a63486ca956"/>
+          <ATTRIBUTES>
+            <ATT name="Content"></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

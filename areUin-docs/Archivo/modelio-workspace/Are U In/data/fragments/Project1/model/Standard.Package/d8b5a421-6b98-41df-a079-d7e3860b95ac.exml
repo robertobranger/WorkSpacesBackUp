@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="project1" version="4">
+  <OBJECT>
+    <ID name="project1" mc="Standard.Package" uid="d8b5a421-6b98-41df-a079-d7e3860b95ac"/>
+    <PID name="Project1" mc="Standard.Project" uid="142e94b1-0ec3-4bed-a4dc-abad9952c446"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[project1]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="sports" mc="Standard.Class" uid="070ea0b6-b33d-49a3-8b5d-da7e21813ae3"/>
+        <COMPID name="Periods" mc="Standard.Class" uid="9450dd85-9e7a-4b1b-8bdc-1c7814e057fe"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="project1 Class diagram" mc="Standard.ClassDiagram" uid="d83fbe85-9580-4f2d-a4ba-e1ff59034c03"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

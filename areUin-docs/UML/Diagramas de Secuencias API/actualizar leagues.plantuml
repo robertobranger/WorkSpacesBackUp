@@ -1,0 +1,25 @@
+@startuml
+title <font color=red size=10>Actualizar Leagues</font>
+
+boundary "WEB/Mobile" as ui order 5
+control leagues as leagues order 10
+participant utils order 20
+participant MinorGroupRepository as repo order 15
+
+ui -> leagues : [PUT] /api/leagues\n [{\n publicId: xxxxxx,\n name: xxxx,\n fullname: yyyyy,\nactive: true }]
+activate leagues
+leagues -> leagues : updateLeagues
+activate leagues
+leagues -> repo : findRecordsBeforeUpdate(req.body)
+activate repo
+return leagues
+leagues -> utils : omitProperties(leagues, [\n'startDate',\n'endDate',\n'createdAt',\n'updatedAt',\n'publicId',\n'seasonId'\n]);
+activate utils
+return leagues
+leagues -> repo : createAndSave(leagues)
+activate repo
+return savedLeagues
+return response
+return response
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+title <font color=red size=15> Obtener Picks por parámetros de búsquedas </font>
+boundary "WEB/Mobile" as ui
+control PicksKitchen as controlador
+participant customPicksKitchenRepository as repo
+
+ui -> controlador : /api/v2/picks {\n    filters: {\n      startDateSince: "2018/01/01",\n      startDateUntil: "2018/01/01",\n      category: 1,\n      pickType: 1,\n      ticketValue: 1,\n      rewardsMode: 1,\n     availableTickets: 1}\n }
+activate controlador
+controlador -> controlador : getPicks(req,res,next)
+activate controlador
+controlador -> repo : findPicksByFilters(req.body)
+activate repo
+return response
+return response
+return response
+@enduml

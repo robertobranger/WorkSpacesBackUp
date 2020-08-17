@@ -1,0 +1,4 @@
+Hay object freeze dentro de Result<T> y en ValueObject<T>. Estar pendiente de performance issue.
+Hablar de la clase Result particularmente.
+logDomainEvents() de ./src/base/domain/events/DomainEvents.ts podria implementarse con lo que estemos usando de logs
+Discutir areuin-nodejs-api/areUinNamingStrategy

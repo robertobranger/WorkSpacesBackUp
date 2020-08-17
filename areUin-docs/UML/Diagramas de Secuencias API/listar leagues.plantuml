@@ -1,0 +1,38 @@
+@startuml
+title <font color=red size=10>Consultar Leagues</font> 
+
+boundary "WEB/Mobile" as ui order 5
+control leagues as controller order 10
+participant utils order 15
+participant MinorGroupRepository as repo order 20
+
+ui -> controller : [GET] /api/v2/leagues \n[{sports: [1,2,3],\ncountries[1,2,3],\nlimit: 5,\noffset:1}\n]
+activate controller
+controller -> controller : getAllLeagues()
+activate controller
+controller -> utils : getUUIDValues(req.query, 'sports')
+activate utils
+return sports
+
+controller -> utils : getUUIDValues(req.query, 'countries')
+activate utils
+return countries
+
+controller -> utils : getIntegerValues(req.query, 'limit');
+activate utils
+return limit
+
+controller -> utils : getIntegerValues(req.query, 'offset')
+activate utils
+return offset
+
+controller -> repo : getAllMinorGroups(sports, countries, limit, offset)
+activate repo
+return leagues
+
+return leagues
+return leagues:\n [{\npublicId: xxxxx,\nseassonId:18,\nname: xxx,\nfullName: yyyy,\nactive:true,\nStartDate: dd/mm/yyyy,\nEndDate: dd/mm/yyyy}]
+
+
+
+@enduml

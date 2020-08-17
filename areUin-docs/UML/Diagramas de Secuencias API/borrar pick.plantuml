@@ -1,0 +1,22 @@
+@startuml
+
+title <font color=red size=15> Borrar Picks</font>
+
+boundary "WEB/Mobile" as ui 
+control PicksKitchen as controlador
+participant customPicksKitchenRepository as repo
+
+
+ui -> controlador : [DELETE] /api/v2/picks/ {\n    [\n     {\n      public_id: cfecd9f1-c6a2-44c4-94d5-f262778b3898\n     },\n     {\n      public_id: cfecd9f1-c6a2-44c4-94d5-f262778b3898\n     }\n ]\n   }
+activate controlador
+controlador -> controlador : deletePicks(req,res,next)
+activate controlador
+controlador -> repo : deletePicks(picksID: object[])
+activate repo
+Loop picksID.map
+repo -> repo : delete( { id: publicID} )
+end
+return Picks
+return Picks
+return { status: 'ok' }
+@enduml

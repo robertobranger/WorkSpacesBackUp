@@ -1,0 +1,56 @@
+version: '3'
+networks: 
+  dev-network:
+    driver: bridge
+
+services:
+  areuin-db:
+    image: postgres:10
+    container_name: areUin-stats-DB
+    privileged: true
+    volumes:
+
+      - "api-db:/var/lib/postgresql/data"
+
+    environment:
+    
+      - DEFAULT_POSTGRES_USER=postgres
+      - DEFAULT_POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=areUin
+      - POSTGRES_USER=areUin
+      - POSTGRES_DB=areUin
+    
+    networks:
+
+      - dev-network
+    
+    ports:
+
+      - ${DBPORT}:5432
+
+  areuin-api:
+    container_name: areUin-stats-API
+    build:
+      context: ../
+      dockerfile: ./devops/Dockerfile
+    depends_on:
+      - areuin-db
+    environment:
+
+       - NODE_ENV=dev
+       - VIRTUAL_HOST=${VIRTUAL_HOST}
+       - VIRTUAL_PORT=${VIRTUAL_PORT}
+
+    privileged:  true
+    volumes:
+      - '../:/areUin'
+      - 'api-node_modules:/areUin/node_modules'
+
+    networks:
+      - dev-network
+    ports:
+       - ${APIPORT}:10014
+    stdin_open: true
+volumes:
+  api-node_modules:
+  api-db:

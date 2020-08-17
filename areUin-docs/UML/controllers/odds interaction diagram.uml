@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><uml:Model xmlns:uml="http://www.omg.org/spec/UML/20110701" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:version="2.1" xmi:id="_Y_iP8EvsEemIEOgDwN-_5A" name="are u in api">
+  <eAnnotations xmi:id="_Y_iP8UvsEemIEOgDwN-_5A" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_Y_iP8kvsEemIEOgDwN-_5A" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_Y_iP80vsEemIEOgDwN-_5A" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_Y_iP9EvsEemIEOgDwN-_5A" name="Interaction">
+    <nestedClassifier xmi:type="uml:Collaboration" xmi:id="_Y_iP9UvsEemIEOgDwN-_5A" name="locals"/>
+    <lifeline xmi:id="_Y_iP9kvsEemIEOgDwN-_5A" name="Odds">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_Y_iP90vsEemIEOgDwN-_5A">
+        <body/>
+      </ownedComment>
+      <selector xmi:type="uml:LiteralString" xmi:id="_Y_iP-EvsEemIEOgDwN-_5A" value="Controller"/>
+    </lifeline>
+  </packagedElement>
+</uml:Model>

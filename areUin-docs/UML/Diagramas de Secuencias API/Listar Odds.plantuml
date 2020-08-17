@@ -1,0 +1,42 @@
+@startuml
+title <font color=red size=20>Listar todos los Odds</font>
+boundary "WEB/Mobile" as UI
+control odds as odds
+participant utils
+participant MatchRepository as repo
+UI -> odds : GET /api/v2/odds
+activate API
+UI -> odds : getAllAction
+activate odds
+odds -> utils : getDateRanges(req.query, 'date')
+activate utils
+return date 
+odds -> utils : getUUIDValues(req.query, 'sports')
+activate utils
+return sports
+odds -> utils : getIntegerValues(req.query, 'limit')
+activate utils
+return limit
+odds -> utils : getUUIDValues(req.query, 'leagues')
+activate utils
+return leagues
+odds -> utils : getIntegerValues(req.query, 'offset')
+activate utils
+return offset
+odds -> utils : getUUIDValues(req.query, 'oddsTypes')
+activate utils
+return oddsTypes
+odds -> utils : getUUIDValues(req.query, 'countries')
+activate utils
+return countries
+odds ->  repo : getAllOdds(date, sports, countries, leagues, oddsTypes, offset, limit)
+activate repo
+return matches
+odds -> util : castCollection(matches,  {\n      val: parseFloat,\n      o1: parseFloat,\n      o2: parseFloat,\n      o3: parseFloat\n    }, 'items');
+activate util
+return response {items:[\n  { oddsId: xxx,\n  val: 0,\n  01: nn,\n  o2: yy,\n  o3: zz,\n  matchId: ,\n  realMoney: false,\n  playMoney: true,\n  startDate: xx,\n  sportName: mmmm,\n  league:,\n  oddsType: ,\n country: ,\n description: \n  }\n ]}
+return response
+
+
+
+@enduml

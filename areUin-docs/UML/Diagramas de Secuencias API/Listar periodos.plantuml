@@ -1,0 +1,22 @@
+@startuml
+
+title <font color=red size=20>Listar todos los Periodos</font> 
+boundary "WEB/Mobile" as UI
+control Periods as controlador
+participant utils
+participant PeriodRepository as repo
+
+
+UI -> controlador : [GET] /periods { leagues: [id1,id2,id3] }
+activate controlador
+controlador -> controlador : getAllPeriods(req,res,next)
+activate controlador
+controlador -> utils : getUUIDValues(req.query, 'leagues')
+activate utils
+return leaguesIds
+controlador -> repo : getAllPeriods(leaguesIds)
+activate repo
+return periods
+return periods
+return {  \n [\n  {publicId: ec2f97a0-7792-4579-86e3-d87616f5b976,\n  oddsTypeName: three way,\n  oddsTypeLabel: Ganador,\n  periodName: FT,\n  periodLabel: TC,\n  createdAt: '2019-02-15T02:28:31.062Z',\n  updatedAt: '2019-02-15T02:28:31.062Z'  \n  }\n  ]\n }
+@enduml

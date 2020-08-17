@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_shho4EvsEemIEOgDwN-_5A" name="are u in api">
+  <eAnnotations xmi:id="_shho4UvsEemIEOgDwN-_5A" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_shho4kvsEemIEOgDwN-_5A" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_shho40vsEemIEOgDwN-_5A" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_shho5EvsEemIEOgDwN-_5A" name="Interaction">
+    <nestedClassifier xmi:type="uml:Collaboration" xmi:id="_shho5UvsEemIEOgDwN-_5A" name="locals"/>
+    <lifeline xmi:id="_shho5kvsEemIEOgDwN-_5A" name="Odds">
+      <ownedComment xmi:id="_shho50vsEemIEOgDwN-_5A">
+        <body></body>
+      </ownedComment>
+      <selector xmi:type="uml:LiteralString" xmi:id="_shho6EvsEemIEOgDwN-_5A" value="Controller"/>
+    </lifeline>
+  </packagedElement>
+</uml:Model>

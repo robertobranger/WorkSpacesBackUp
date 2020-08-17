@@ -1,0 +1,2770 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="0.65"
+	 default-schema="public" default-owner="postgres">
+<role name="areUin"
+      superuser="true"
+      createdb="true"
+      replication="true"
+      createrole="true"
+      inherit="true"
+      login="true"
+      bypassrls="true"
+      encrypted="true"
+      password="********"
+      sql-disabled="true">
+</role>
+
+<database name="areUin" encoding="UTF8" lc-collate="en_US.utf8" lc-ctype="en_US.utf8" is-template="false" allow-conns="true">
+	<role name="&quot;areUin&quot;"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<extension name="uuid-ossp" cur-version="1.1">
+	<schema name="public"/>
+	<comment><![CDATA[generate universally unique identifiers (UUIDs)]]></comment>
+</extension>
+
+<sequence name="migrations_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="migrations">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="20" y="680"/>
+	<column name="id" not-null="true" sequence="public.migrations_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="timestamp" not-null="true">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="PK_8c82d7f526340ab734260ea46be" type="pk-constr" table="public.migrations">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sports">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="3920" y="60"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="display_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_4fa1063d368e1fd68ea63c7d860" type="pk-constr" table="public.sports">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="matches">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4160" y="720"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="cname" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="display_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="home_team" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="away_team" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="date" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="group_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="master_group_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="sports_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="regions_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="championships_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_8a22c7b2e0828988d51256117f4" type="pk-constr" table="public.matches">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="results_status_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="results_status">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4640" y="1180"/>
+	<column name="id" not-null="true" sequence="public.results_status_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="description" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_e400b4b78f787149954d475a5dd" type="pk-constr" table="public.results_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="results">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4460" y="1460"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="cname" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="group_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="home_team_points" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="away_team_points" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="last_updated" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="time" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="results_status_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="match_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="deleted">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="periods_available_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_e8f2a9191c61c15b627c117a678" type="pk-constr" table="public.results">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="minor_groups">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="5480" y="1100"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="season_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="fullname" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="start_date" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="end_date" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="master_group_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_8c2e13a180280b8f2ca202674df" type="pk-constr" table="public.minor_groups">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="master_groups" hide-ext-attribs="true">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="5560" y="860"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_df36856dbb1d1f44e18214027fc" type="pk-constr" table="public.master_groups">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="devices_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="devices">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="20" y="820"/>
+	<column name="id" not-null="true" sequence="public.devices_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="user" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="lang" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="operative_system" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="app_version" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="token_device" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="PK_b1514758245c12daf43486dd1f0" type="pk-constr" table="public.devices">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="users_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="users">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1280" y="2020"/>
+	<column name="id" not-null="true" sequence="public.users_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="firstname">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="lastname">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="username">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="gender">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="maritalstatus">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="birthdate">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="validemail">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="country">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="city">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="province">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="address">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="zipcode">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="phonenumber">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="countrycode">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="lastlogin">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="password">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="stepone" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="steptwo" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="stepthree" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="complete" default-value="0">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="role_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="passport">
+		<type name="character varying" length="25"/>
+	</column>
+	<column name="user_photo">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="passport_photo">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="PK_a3ffb1c0c8416b9fc6f907b7433" type="pk-constr" table="public.users">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="UQ_97672ac88f789774dd47f7c8be3" type="uq-constr" table="public.users">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="UQ_fe0bb3f6520ee0469504521e710" type="uq-constr" table="public.users">
+		<columns names="username" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="IDX_fe0bb3f6520ee0469504521e71" table="public.users"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="username"/>
+		</idxelement>
+</index>
+
+<index name="IDX_97672ac88f789774dd47f7c8be" table="public.users"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="email"/>
+		</idxelement>
+</index>
+
+<sequence name="roles_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="roles">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="60" y="2000"/>
+	<column name="id" not-null="true" sequence="public.roles_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="role_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_c1433d71a4838793a49dcad46ab" type="pk-constr" table="public.roles">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="privileges_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="privileges">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="60" y="2240"/>
+	<column name="id" not-null="true" sequence="public.privileges_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="resource_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="show" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="create" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="update" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="delete" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="role_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_13f3ff98ae4d5565ec5ed6036cd" type="pk-constr" table="public.privileges">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tokens_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tokens">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="20" y="1000"/>
+	<column name="id" not-null="true" sequence="public.tokens_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="token" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="expired" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="tokenType" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="notLogin" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="create_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="update_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_3001e89ada36263dabf1fb6210a" type="pk-constr" table="public.tokens">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="IDX_6a8ca5961656d13c16c04079dd" table="public.tokens"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="token"/>
+		</idxelement>
+</index>
+
+<sequence name="categories_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="categories">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="2600" y="500"/>
+	<column name="id" not-null="true" sequence="public.categories_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="category_photo">
+		<type name="character varying" length="250"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_9c4e4a89e3674fc9f382d733f03" type="pk-constr" table="public.categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="rewards_modes_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="rewards_modes">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1800" y="500"/>
+	<column name="id" not-null="true" sequence="public.rewards_modes_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="description">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_0c803f9443816ca0018b5dd3735" type="pk-constr" table="public.rewards_modes">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="max_bets_per_tickets_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="max_bets_per_tickets">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1400" y="500"/>
+	<column name="id" not-null="true" sequence="public.max_bets_per_tickets_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="max_bets_per_ticket">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="description">
+		<type name="character varying" length="40"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="erasable" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_4e4cdd8aa3d71d32c29ef2281ab" type="pk-constr" table="public.max_bets_per_tickets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="ticket_values_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="ticket_values">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="2200" y="500"/>
+	<column name="id" not-null="true" sequence="public.ticket_values_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="commission_per_ticket">
+		<type name="numeric" length="4" precision="2"/>
+	</column>
+	<column name="amount_to_pot_per_ticket">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<column name="value">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479bc88bb2ce9975d" type="pk-constr" table="public.ticket_values">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="master_groups_queue">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="5520" y="1560"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="status" not-null="true" default-value="'running'">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_52de30cb8d59b1d437ceb1dde8c" type="pk-constr" table="public.master_groups_queue">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="matches_queue">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="5520" y="1700"/>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="status" not-null="true" default-value="'running'">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_6be994542dbd80730e7010a959a" type="pk-constr" table="public.matches_queue">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="queue_status_enum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<enumeration values="pending,completed"/>
+</usertype>
+
+<sequence name="queue_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="queue">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="5520" y="1840"/>
+	<column name="id" not-null="true" sequence="public.queue_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="element_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="status" not-null="true">
+		<type name="public.queue_status_enum" length="0"/>
+	</column>
+	<column name="process_name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_4adefbd9c73b3f9a49985a5529f" type="pk-constr" table="public.queue">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="IDX_815ac84151c6bb87038b79c479" table="public.queue"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="element_id"/>
+		</idxelement>
+</index>
+
+<index name="IDX_9b4250f921befe0b2af211b459" table="public.queue"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="status"/>
+		</idxelement>
+</index>
+
+<index name="IDX_c6260b371c9a836ed8966dccdc" table="public.queue"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="process_name"/>
+		</idxelement>
+</index>
+
+<index name="IDX_4f14c8c415fac08a42b4d3aaf3" table="public.matches"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="sports_id"/>
+		</idxelement>
+</index>
+
+<index name="IDX_24e8071e3486275a5a31912a87" table="public.matches"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="group_id"/>
+		</idxelement>
+</index>
+
+<index name="IDX_fb49267dae454075287342e769" table="public.matches"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="master_group_id"/>
+		</idxelement>
+</index>
+
+<sequence name="max_entries_names_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="max_entries_names">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1000" y="500"/>
+	<column name="id" not-null="true" sequence="public.max_entries_names_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="erasable" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_9c4e4a89e3674fc9f382d733f04" type="pk-constr" table="public.max_entries_names">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tournament_profiles_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tournament_profiles">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1240" y="840"/>
+	<column name="id" not-null="true" sequence="public.tournament_profiles_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="kpi_total_tickets">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="kpi_tickets_by_maxentries_percentage">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="categories_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_bets_per_tickets_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="rewards_modes_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_entries_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tickets_values_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="tournament_profile_pk" type="pk-constr" table="public.tournament_profiles">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tournaments_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tournaments">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1240" y="1220"/>
+	<column name="id" not-null="true" sequence="public.tournaments_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="pot" not-null="true">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<column name="start_date" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="publication_duration" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="reward_percentage" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_tickets_per_tournament">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_tickets_per_user_per_tournament">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="minimun_available_matches">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="minimun_available_bets">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="commission_per_ticket">
+		<type name="numeric" length="2" precision="2"/>
+	</column>
+	<column name="amount_to_pot_per_ticket">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<column name="deleted">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="tournament_profiles_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="relevance">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournament_status_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="registered_tickets" not-null="true" default-value="0">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournament_type_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="tournament_pk" type="pk-constr" table="public.tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="reward_percentages_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="reward_percentages">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="600" y="500"/>
+	<column name="id" not-null="true" sequence="public.reward_percentages_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="reward_percentages">
+		<type name="numeric" length="2" precision="1"/>
+	</column>
+	<column name="frequency_factor">
+		<type name="numeric" length="2" precision="1"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479bc88bb2ce9976d" type="pk-constr" table="public.reward_percentages">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="reward_percentages_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="reward_percentages_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="600" y="120"/>
+	<column name="id" not-null="true" sequence="public.reward_percentages_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="reward_percentages_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_bets_per_tickets_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="rewards_modes_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_860aeb2890479bc88bb2ce9975d" type="pk-constr" table="public.reward_percentages_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tournament_activation_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tournament_activation_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1400" y="120"/>
+	<column name="id" not-null="true" sequence="public.tournament_activation_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="minimum_available_matches">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="minimum_available_bets">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="max_entries_names_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_bets_per_tickets_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_8a0aec2890479bc88bb2ce9975d" type="pk-constr" table="public.tournament_activation_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="ticket_values_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<sequence name="max_entries_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="max_entries_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1000" y="120"/>
+	<column name="id" not-null="true" sequence="public.max_entries_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="max_tickets_per_tournament">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="max_entries_names_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_bets_per_tickets_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="rewards_modes_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479dc88bb2ce9975a" type="pk-constr" table="public.max_entries_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="max_tickets_per_users_per_tournaments_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="max_tickets_per_users_per_tournaments_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="2260" y="120"/>
+	<column name="id" not-null="true" sequence="public.max_tickets_per_users_per_tournaments_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="lower_tickets_per_tournament_bound">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_tickets_per_user_per_tournament">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_8a0adb2890479dc88bb2ce9975a" type="pk-constr" table="public.max_tickets_per_users_per_tournaments_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tournament_status_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tournament_status">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1800" y="1320"/>
+	<column name="id" not-null="true" sequence="public.tournament_status_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479dc88bb2ce9875a" type="pk-constr" table="public.tournament_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="trending_tournaments_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="trending_tournaments">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="700" y="1100"/>
+	<column name="id" not-null="true" sequence="public.trending_tournaments_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournament_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479dc88bb2de9875a" type="pk-constr" table="public.trending_tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="trending_satelites_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="trending_satelites">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="700" y="1240"/>
+	<column name="id" not-null="true" sequence="public.trending_satelites_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournament_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479dc88bb2de9475a" type="pk-constr" table="public.trending_satelites">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="user_tournament_recommendations_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="user_tournament_recommendations">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="300" y="1680"/>
+	<column name="id" not-null="true" sequence="public.user_tournament_recommendations_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="users_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournaments_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_8a0bed2890479bc88bb2ce9975d" type="pk-constr" table="public.user_tournament_recommendations">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="ticket_status_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="ticket_status">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1960" y="1580"/>
+	<column name="id" not-null="true" sequence="public.ticket_status_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="20"/>
+	</column>
+	<constraint name="PK_ticket_status" type="pk-constr" table="public.ticket_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tickets_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tickets">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1940" y="1840"/>
+	<column name="id" not-null="true" sequence="public.tickets_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="registration_date" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="uinpoints" not-null="true" default-value="0">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="average_risk" not-null="true" default-value="0">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="place_in_tournament">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="prize">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="deleted" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="user_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ticket_status_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournaments_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_tickets" type="pk-constr" table="public.tickets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="user_favorite_tournaments_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="user_favorite_tournaments">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="720" y="1680"/>
+	<column name="id" not-null="true" sequence="public.user_favorite_tournaments_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="users_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournaments_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_user_favorite_tournaments" type="pk-constr" table="public.user_favorite_tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tournament_type_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tournament_type">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1800" y="1180"/>
+	<column name="id" not-null="true" sequence="public.tournament_type_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="max_bets_per_ticket_lower_bound">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="max_bets_per_ticket_upper_bound">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="PK_tournament_type" type="pk-constr" table="public.tournament_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ticket_values_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="1800" y="120"/>
+	<column name="id" not-null="true" sequence="public.ticket_values_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="ticket_values_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_bets_per_tickets_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="ticket_values_rules_pk" type="pk-constr" table="public.ticket_values_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="last_chance_tournaments_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="last_chance_tournaments">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="700" y="1360"/>
+	<column name="id" not-null="true" sequence="public.last_chance_tournaments_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tournament_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_8a0aeb2890479dd78bb2de9875a" type="pk-constr" table="public.last_chance_tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="regions_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<sequence name="championships_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="9223372036854775807"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<sequence name="teams_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="teams">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="5360" y="60"/>
+	<column name="id" not-null="true" sequence="public.teams_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="PK_teams" type="pk-constr" table="public.teams">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="periods_names_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="periods_names">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="3640" y="1220"/>
+	<column name="id" not-null="true" sequence="public.periods_names_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="30"/>
+	</column>
+	<constraint name="PK_periods_names" type="pk-constr" table="public.periods_names">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sports_periods_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="sports_periods_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="3560" y="820"/>
+	<column name="id" not-null="true" sequence="public.sports_periods_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="order">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="periods_names_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="sports_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_sports_periods_rules" type="pk-constr" table="public.sports_periods_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="periods_available_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="periods_available">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4160" y="1180"/>
+	<column name="id" not-null="true" sequence="public.periods_available_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="matches_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="periods_names_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="results_status_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_periods_available" type="pk-constr" table="public.periods_available">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="bet_types_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="bet_types" hide-ext-attribs="true">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="3640" y="1460"/>
+	<column name="id" not-null="true" sequence="public.bet_types_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="description">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_bet_types" type="pk-constr" table="public.bet_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="available_bet_types_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="available_bet_types">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4000" y="1460"/>
+	<column name="id" not-null="true" sequence="public.available_bet_types_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="val">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="periods_available_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="bet_types_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_available_bet_types" type="pk-constr" table="public.available_bet_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="bet_values_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="bet_values">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4020" y="1760"/>
+	<column name="id" not-null="true" sequence="public.bet_values_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="odd_name">
+		<type name="character varying" length="5"/>
+	</column>
+	<column name="win">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="odd_value">
+		<type name="numeric" length="2" precision="2"/>
+	</column>
+	<column name="available_bet_types_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_bet_values" type="pk-constr" table="public.bet_values">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="user_bets_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="user_bets">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="2960" y="1740"/>
+	<column name="id" not-null="true" sequence="public.user_bets_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="odd_value">
+		<type name="character varying" length="5"/>
+	</column>
+	<column name="probability">
+		<type name="numeric" length="3" precision="2"/>
+	</column>
+	<column name="bet_values_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="deleted">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="PK_user_bets" type="pk-constr" table="public.user_bets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="regions">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4460" y="60"/>
+	<column name="id" not-null="true" sequence="public.regions_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="PK_regions" type="pk-constr" table="public.regions">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="championships">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="4180" y="360"/>
+	<column name="id" not-null="true" sequence="public.championships_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="public_id" not-null="true" default-value="uuid_generate_v4()">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="stage" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="year" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="sports_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="regions_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="now()">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="active" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="PK_championships" type="pk-constr" table="public.championships">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="misc_rules_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="misc_rules">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="60" y="120"/>
+	<column name="id" not-null="true" sequence="public.misc_rules_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="user_notification_pending_fill_ticket_time">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_creation_filled_tournament_rule">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="auto_creation_filled_tournaments_max_entries">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_creation_filled_tournament_fill_percentage">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_asign_max_quota_rule">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="max_quota_1">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_quota_2">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="ocurrence_percentage_quota_max_1">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="ocurrence_percentage_quota_max_2">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="minimum_registered_tickets_to_hide_max_entry">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="tournament_filled_percentage_to_reshow_max_entry">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="exchange_rate_cash_to_money">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="minimum_cash_to_exchange">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="relevance_refresh_rate_in_seconds">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="step_range_for_sigmoid">
+		<type name="numeric" length="3" precision="2"/>
+	</column>
+	<column name="minimum_registered_tickets_for_relevance">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="maximum_registered_tickets_for_relevance">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="a_constant_for_registered_tickets">
+		<type name="numeric" length="4" precision="2"/>
+	</column>
+	<column name="b_constant_for_registered_tickets">
+		<type name="numeric" length="4" precision="2"/>
+	</column>
+	<column name="minimum_remaining_time_for_relevance">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="maximum_remaining_time_for_relevance">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="a_constant_remaining_time_for_relevance">
+		<type name="numeric" length="4" precision="2"/>
+	</column>
+	<column name="b_constant_remaining_time_for_relevance">
+		<type name="numeric" length="4" precision="2"/>
+	</column>
+	<column name="trending_picks_buffer">
+		<type name="numeric" length="2" precision="1"/>
+	</column>
+	<column name="top_satelites_buffer">
+		<type name="numeric" length="2" precision="1"/>
+	</column>
+	<constraint name="misc_rules_pk" type="pk-constr" table="public.misc_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="tickets_user_bets_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="tickets_user_bets">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="2580" y="1860"/>
+	<column name="id" not-null="true" sequence="public.tickets_user_bets_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tickets_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_tickets_user_bets" type="pk-constr" table="public.tickets_user_bets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sports_in_categories_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="sports_in_categories">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="3180" y="220"/>
+	<column name="id" not-null="true" sequence="public.sports_in_categories_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="categories_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="sports_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_sports_in_categories" type="pk-constr" table="public.sports_in_categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="regions_in_categories_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="regions_in_categories">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="2940" y="60"/>
+	<column name="id" not-null="true" sequence="public.regions_in_categories_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="categories_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="regions_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_regions_in_categories" type="pk-constr" table="public.regions_in_categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="championships_in_categories_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+</sequence>
+
+<table name="championships_in_categories">
+	<schema name="public"/>
+	<role name="&quot;areUin&quot;"/>
+	<position x="3280" y="480"/>
+	<column name="id" not-null="true" sequence="public.championships_in_categories_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="categories_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="championships_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="PK_championships_in_categories" type="pk-constr" table="public.championships_in_categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="FK_matches_to_sports" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sports" table="public.matches">
+	<columns names="sports_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_matches_to_regions" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.regions" table="public.matches">
+	<columns names="regions_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_matches_to_championships" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.championships" table="public.matches">
+	<columns names="championships_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_0bfb2321fce3edb2205a356f0a3" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.results_status" table="public.results">
+	<columns names="results_status_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_dde20f0eb62fcb685266c1c78c9" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.matches" table="public.results">
+	<columns names="match_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_results_to_periods_available" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.periods_available" table="public.results">
+	<columns names="periods_available_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_209d24e9e3aa15d2f65c2bcdcd2" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.master_groups" table="public.minor_groups">
+	<columns names="master_group_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_a2cecd1a3531c0b041e29ba46e1" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.roles" table="public.users">
+	<columns names="role_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_ba5f3ffbc48038f13d4a32f755b" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.roles" table="public.privileges">
+	<columns names="role_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a96bb04f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.categories" table="public.tournament_profiles">
+	<columns names="categories_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a96bb05f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_bets_per_tickets" table="public.tournament_profiles">
+	<columns names="max_bets_per_tickets_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a96bb06f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rewards_modes" table="public.tournament_profiles">
+	<columns names="rewards_modes_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a96bb07f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_entries_names" table="public.tournament_profiles">
+	<columns names="max_entries_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a96bb08f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.ticket_values" table="public.tournament_profiles">
+	<columns names="tickets_values_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974b96bb04d" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournament_profiles" table="public.tournaments">
+	<columns names="tournament_profiles_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d32690974b96bb04d" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournament_status" table="public.tournaments">
+	<columns names="tournament_status_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_tournament_to_tournament_type" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournament_type" table="public.tournaments">
+	<columns names="tournament_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8636e377a0d72690974a96bb04f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.reward_percentages" table="public.reward_percentages_rules">
+	<columns names="reward_percentages_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8636e377a0d72690974a96bb05f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_bets_per_tickets" table="public.reward_percentages_rules">
+	<columns names="max_bets_per_tickets_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8636e377a0d72690974a96bb06f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rewards_modes" table="public.reward_percentages_rules">
+	<columns names="rewards_modes_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036c377a0d72690974a96bb04f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_entries_names" table="public.tournament_activation_rules">
+	<columns names="max_entries_names_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036c377a0d72690974a96bb05f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_bets_per_tickets" table="public.tournament_activation_rules">
+	<columns names="max_bets_per_tickets_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a76bb04f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_entries_names" table="public.max_entries_rules">
+	<columns names="max_entries_names_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a76bb05f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_bets_per_tickets" table="public.max_entries_rules">
+	<columns names="max_bets_per_tickets_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a76bb06f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.rewards_modes" table="public.max_entries_rules">
+	<columns names="rewards_modes_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690974a96eb08f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournaments" table="public.trending_tournaments">
+	<columns names="tournament_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e377a0d72690975a96eb08f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournaments" table="public.trending_satelites">
+	<columns names="tournament_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8236d377a0d72690974a96bb04f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.users" table="public.user_tournament_recommendations">
+	<columns names="users_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8136d377a0d72690974a96bb05f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournaments" table="public.user_tournament_recommendations">
+	<columns names="tournaments_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_user_id" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.users" table="public.tickets">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_ticket_status_id" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.ticket_status" table="public.tickets">
+	<columns names="ticket_status_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_tournaments_id" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournaments" table="public.tickets">
+	<columns names="tournaments_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_user_favorite_tournaments_to_users" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.users" table="public.user_favorite_tournaments">
+	<columns names="users_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_user_favorite_tournaments_to_tournaments" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournaments" table="public.user_favorite_tournaments">
+	<columns names="tournaments_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036d377a0d72690974a96bb04f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.ticket_values" table="public.ticket_values_rules">
+	<columns names="ticket_values_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036d377a0d72690974a96bb05f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.max_bets_per_tickets" table="public.ticket_values_rules">
+	<columns names="max_bets_per_tickets_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_8036e388a0d72690974a96eb08f" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tournaments" table="public.last_chance_tournaments">
+	<columns names="tournament_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_sports_periods_rules_to_periods_names" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.periods_names" table="public.sports_periods_rules">
+	<columns names="periods_names_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_sports_periods_rules_to_sports" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sports" table="public.sports_periods_rules">
+	<columns names="sports_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_periods_available_to_matches" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.matches" table="public.periods_available">
+	<columns names="matches_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_periods_available_to_periods_names" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.periods_names" table="public.periods_available">
+	<columns names="periods_names_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_periods_available_to_results_status" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.results_status" table="public.periods_available">
+	<columns names="results_status_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_available_bet_types_to_periods_available" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.periods_available" table="public.available_bet_types">
+	<columns names="periods_available_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_available_bet_types_to_bet_types" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.bet_types" table="public.available_bet_types">
+	<columns names="bet_types_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_bet_values_to_available_bet_types" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.available_bet_types" table="public.bet_values">
+	<columns names="available_bet_types_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_user_bets_to_bet_values" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.bet_values" table="public.user_bets">
+	<columns names="bet_values_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_championships_to_sports" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sports" table="public.championships">
+	<columns names="sports_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_championships_to_regions" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.regions" table="public.championships">
+	<columns names="regions_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_tickets_user_bets_to_tickets" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tickets" table="public.tickets_user_bets">
+	<columns names="tickets_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_sports_in_categories_to_categories" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.categories" table="public.sports_in_categories">
+	<columns names="categories_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_sports_in_categories_to_sports" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sports" table="public.sports_in_categories">
+	<columns names="sports_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_regions_in_categories_to_categories" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.categories" table="public.regions_in_categories">
+	<columns names="categories_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_regions_in_categories_to_regions" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.regions" table="public.regions_in_categories">
+	<columns names="regions_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_championships_in_categories_to_categories" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.categories" table="public.championships_in_categories">
+	<columns names="categories_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="FK_championships_in_categories_to_championships" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.championships" table="public.championships_in_categories">
+	<columns names="championships_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_matches_sports" type="relfk"
+	 custom-color="#c15703"
+	 src-table="public.matches"
+	 dst-table="public.sports" reference-fk="FK_matches_to_sports"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_matches_regions" type="relfk"
+	 custom-color="#84db47"
+	 src-table="public.matches"
+	 dst-table="public.regions" reference-fk="FK_matches_to_regions"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_matches_championships" type="relfk"
+	 custom-color="#8048f9"
+	 src-table="public.matches"
+	 dst-table="public.championships" reference-fk="FK_matches_to_championships"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_results_results_status" type="relfk"
+	 custom-color="#fd1477"
+	 src-table="public.results"
+	 dst-table="public.results_status" reference-fk="FK_0bfb2321fce3edb2205a356f0a3"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_results_matches" type="relfk"
+	 custom-color="#18eca3"
+	 src-table="public.results"
+	 dst-table="public.matches" reference-fk="FK_dde20f0eb62fcb685266c1c78c9"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_results_periods_available" type="relfk"
+	 custom-color="#a6815c"
+	 src-table="public.results"
+	 dst-table="public.periods_available" reference-fk="FK_results_to_periods_available"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_minor_groups_master_groups" type="relfk"
+	 custom-color="#0ec080"
+	 src-table="public.minor_groups"
+	 dst-table="public.master_groups" reference-fk="FK_209d24e9e3aa15d2f65c2bcdcd2"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_users_roles" type="relfk"
+	 custom-color="#754f60"
+	 src-table="public.users"
+	 dst-table="public.roles" reference-fk="FK_a2cecd1a3531c0b041e29ba46e1"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_privileges_roles" type="relfk"
+	 custom-color="#b55f9f"
+	 src-table="public.privileges"
+	 dst-table="public.roles" reference-fk="FK_ba5f3ffbc48038f13d4a32f755b"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_profiles_categories" type="relfk"
+	 custom-color="#8f64a3"
+	 src-table="public.tournament_profiles"
+	 dst-table="public.categories" reference-fk="FK_8036e377a0d72690974a96bb04f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_profiles_max_bets_per_tickets" type="relfk"
+	 custom-color="#9172d7"
+	 src-table="public.tournament_profiles"
+	 dst-table="public.max_bets_per_tickets" reference-fk="FK_8036e377a0d72690974a96bb05f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_profiles_rewards_modes" type="relfk"
+	 custom-color="#00ed31"
+	 src-table="public.tournament_profiles"
+	 dst-table="public.rewards_modes" reference-fk="FK_8036e377a0d72690974a96bb06f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_profiles_max_entries_names" type="relfk"
+	 custom-color="#5abc2e"
+	 src-table="public.tournament_profiles"
+	 dst-table="public.max_entries_names" reference-fk="FK_8036e377a0d72690974a96bb07f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_profiles_ticket_values" type="relfk"
+	 custom-color="#fcaa25"
+	 src-table="public.tournament_profiles"
+	 dst-table="public.ticket_values" reference-fk="FK_8036e377a0d72690974a96bb08f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournaments_tournament_profiles" type="relfk"
+	 custom-color="#d47d54"
+	 src-table="public.tournaments"
+	 dst-table="public.tournament_profiles" reference-fk="FK_8036e377a0d72690974b96bb04d"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournaments_tournament_status" type="relfk"
+	 custom-color="#d49e03"
+	 src-table="public.tournaments"
+	 dst-table="public.tournament_status" reference-fk="FK_8036e377a0d32690974b96bb04d"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournaments_tournament_type" type="relfk"
+	 custom-color="#051627"
+	 src-table="public.tournaments"
+	 dst-table="public.tournament_type" reference-fk="FK_tournament_to_tournament_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_reward_percentages_rules_reward_percentages" type="relfk"
+	 custom-color="#591b1e"
+	 src-table="public.reward_percentages_rules"
+	 dst-table="public.reward_percentages" reference-fk="FK_8636e377a0d72690974a96bb04f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_reward_percentages_rules_max_bets_per_tickets" type="relfk"
+	 custom-color="#c088e4"
+	 src-table="public.reward_percentages_rules"
+	 dst-table="public.max_bets_per_tickets" reference-fk="FK_8636e377a0d72690974a96bb05f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_reward_percentages_rules_rewards_modes" type="relfk"
+	 custom-color="#2c0c06"
+	 src-table="public.reward_percentages_rules"
+	 dst-table="public.rewards_modes" reference-fk="FK_8636e377a0d72690974a96bb06f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_activation_rules_max_entries_names" type="relfk"
+	 custom-color="#0c5c96"
+	 src-table="public.tournament_activation_rules"
+	 dst-table="public.max_entries_names" reference-fk="FK_8036c377a0d72690974a96bb04f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tournament_activation_rules_max_bets_per_tickets" type="relfk"
+	 custom-color="#0b4a30"
+	 src-table="public.tournament_activation_rules"
+	 dst-table="public.max_bets_per_tickets" reference-fk="FK_8036c377a0d72690974a96bb05f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ticket_values_rules_ticket_values" type="relfk"
+	 custom-color="#101a19"
+	 src-table="public.ticket_values_rules"
+	 dst-table="public.ticket_values" reference-fk="FK_8036d377a0d72690974a96bb04f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ticket_values_rules_max_bets_per_tickets" type="relfk"
+	 custom-color="#47d621"
+	 src-table="public.ticket_values_rules"
+	 dst-table="public.max_bets_per_tickets" reference-fk="FK_8036d377a0d72690974a96bb05f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_max_entries_rules_max_entries_names" type="relfk"
+	 custom-color="#ee2743"
+	 src-table="public.max_entries_rules"
+	 dst-table="public.max_entries_names" reference-fk="FK_8036e377a0d72690974a76bb04f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_max_entries_rules_max_bets_per_tickets" type="relfk"
+	 custom-color="#374ea7"
+	 src-table="public.max_entries_rules"
+	 dst-table="public.max_bets_per_tickets" reference-fk="FK_8036e377a0d72690974a76bb05f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_max_entries_rules_rewards_modes" type="relfk"
+	 custom-color="#553b6f"
+	 src-table="public.max_entries_rules"
+	 dst-table="public.rewards_modes" reference-fk="FK_8036e377a0d72690974a76bb06f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_trending_tournaments_tournaments" type="relfk"
+	 custom-color="#7c6276"
+	 src-table="public.trending_tournaments"
+	 dst-table="public.tournaments" reference-fk="FK_8036e377a0d72690974a96eb08f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_trending_satelites_tournaments" type="relfk"
+	 custom-color="#090883"
+	 src-table="public.trending_satelites"
+	 dst-table="public.tournaments" reference-fk="FK_8036e377a0d72690975a96eb08f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_user_tournament_recommendations_users" type="relfk"
+	 custom-color="#819263"
+	 src-table="public.user_tournament_recommendations"
+	 dst-table="public.users" reference-fk="FK_8236d377a0d72690974a96bb04f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_user_tournament_recommendations_tournaments" type="relfk"
+	 custom-color="#bb9da4"
+	 src-table="public.user_tournament_recommendations"
+	 dst-table="public.tournaments" reference-fk="FK_8136d377a0d72690974a96bb05f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tickets_users" type="relfk"
+	 custom-color="#0a39e9"
+	 src-table="public.tickets"
+	 dst-table="public.users" reference-fk="FK_user_id"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tickets_ticket_status" type="relfk"
+	 custom-color="#c40c4c"
+	 src-table="public.tickets"
+	 dst-table="public.ticket_status" reference-fk="FK_ticket_status_id"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tickets_tournaments" type="relfk"
+	 custom-color="#a01bda"
+	 src-table="public.tickets"
+	 dst-table="public.tournaments" reference-fk="FK_tournaments_id"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_user_favorite_tournaments_users" type="relfk"
+	 custom-color="#cfd8b5"
+	 src-table="public.user_favorite_tournaments"
+	 dst-table="public.users" reference-fk="FK_user_favorite_tournaments_to_users"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_user_favorite_tournaments_tournaments" type="relfk"
+	 custom-color="#cf4d03"
+	 src-table="public.user_favorite_tournaments"
+	 dst-table="public.tournaments" reference-fk="FK_user_favorite_tournaments_to_tournaments"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_last_chance_tournaments_tournaments" type="relfk"
+	 custom-color="#7318fe"
+	 src-table="public.last_chance_tournaments"
+	 dst-table="public.tournaments" reference-fk="FK_8036e388a0d72690974a96eb08f"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_championships_sports" type="relfk"
+	 custom-color="#c879e2"
+	 src-table="public.championships"
+	 dst-table="public.sports" reference-fk="FK_championships_to_sports"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_championships_regions" type="relfk"
+	 custom-color="#bc6782"
+	 src-table="public.championships"
+	 dst-table="public.regions" reference-fk="FK_championships_to_regions"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sports_periods_rules_periods_names" type="relfk"
+	 custom-color="#9f8ee1"
+	 src-table="public.sports_periods_rules"
+	 dst-table="public.periods_names" reference-fk="FK_sports_periods_rules_to_periods_names"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sports_periods_rules_sports" type="relfk"
+	 custom-color="#1d6a04"
+	 src-table="public.sports_periods_rules"
+	 dst-table="public.sports" reference-fk="FK_sports_periods_rules_to_sports"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_periods_available_matches" type="relfk"
+	 custom-color="#43b072"
+	 src-table="public.periods_available"
+	 dst-table="public.matches" reference-fk="FK_periods_available_to_matches"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_periods_available_periods_names" type="relfk"
+	 custom-color="#98969f"
+	 src-table="public.periods_available"
+	 dst-table="public.periods_names" reference-fk="FK_periods_available_to_periods_names"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_periods_available_results_status" type="relfk"
+	 custom-color="#1456ac"
+	 src-table="public.periods_available"
+	 dst-table="public.results_status" reference-fk="FK_periods_available_to_results_status"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_available_bet_types_periods_available" type="relfk"
+	 custom-color="#0adfd4"
+	 src-table="public.available_bet_types"
+	 dst-table="public.periods_available" reference-fk="FK_available_bet_types_to_periods_available"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_available_bet_types_bet_types" type="relfk"
+	 custom-color="#2dc97b"
+	 src-table="public.available_bet_types"
+	 dst-table="public.bet_types" reference-fk="FK_available_bet_types_to_bet_types"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_bet_values_available_bet_types" type="relfk"
+	 custom-color="#94677b"
+	 src-table="public.bet_values"
+	 dst-table="public.available_bet_types" reference-fk="FK_bet_values_to_available_bet_types"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_user_bets_bet_values" type="relfk"
+	 custom-color="#addfd2"
+	 src-table="public.user_bets"
+	 dst-table="public.bet_values" reference-fk="FK_user_bets_to_bet_values"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tickets_user_bets_tickets" type="relfk"
+	 custom-color="#24c257"
+	 src-table="public.tickets_user_bets"
+	 dst-table="public.tickets" reference-fk="FK_tickets_user_bets_to_tickets"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sports_in_categories_categories" type="relfk"
+	 custom-color="#fd9747"
+	 src-table="public.sports_in_categories"
+	 dst-table="public.categories" reference-fk="FK_sports_in_categories_to_categories"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sports_in_categories_sports" type="relfk"
+	 custom-color="#5aad3e"
+	 src-table="public.sports_in_categories"
+	 dst-table="public.sports" reference-fk="FK_sports_in_categories_to_sports"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_regions_in_categories_categories" type="relfk"
+	 custom-color="#2b051a"
+	 src-table="public.regions_in_categories"
+	 dst-table="public.categories" reference-fk="FK_regions_in_categories_to_categories"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_regions_in_categories_regions" type="relfk"
+	 custom-color="#494d94"
+	 src-table="public.regions_in_categories"
+	 dst-table="public.regions" reference-fk="FK_regions_in_categories_to_regions"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_championships_in_categories_categories" type="relfk"
+	 custom-color="#4ae303"
+	 src-table="public.championships_in_categories"
+	 dst-table="public.categories" reference-fk="FK_championships_in_categories_to_categories"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_championships_in_categories_championships" type="relfk"
+	 custom-color="#ef2929"
+	 src-table="public.championships_in_categories"
+	 dst-table="public.championships" reference-fk="FK_championships_in_categories_to_championships"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

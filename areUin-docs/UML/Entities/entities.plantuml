@@ -1,0 +1,27 @@
+@startuml
+
+Class Picks {
+  PublicId : String
+  pickId: String
+  start_date: Date
+ publication_date: Date
+ available_matches: Number
+ duration: Number
+ pick_execution: Boolean
+ participationPercent: Number
+ registeredTickets: Number
+ 
+ createdAt: DateTime
+ updatedAt: DateTime
+}
+Class Country
+Class Odds
+Class AvailableTicketsIntervals {
+
+}
+
+Picks }- Country
+Picks }- Sports
+
+
+@enduml

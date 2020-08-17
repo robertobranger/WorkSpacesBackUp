@@ -1,0 +1,19 @@
+@startuml
+
+title <font color=red size=15> Obtener Pick by Id</font>
+ 
+boundary "WEB/Mobile" as ui
+control PicksKitchen as controlador
+participant customPicksKitchenRepository as repo
+
+ui -> controlador : [GET] /api/v2/pick/:id {}
+activate controlador
+controlador -> controlador : getOnePickById()
+note right : Es posible mejorar.\n pickID = req.url.split('/')[req.url.split('/').length - 1]
+activate controlador
+controlador -> repo : findPickById(pickID)
+activate repo
+return  {pick: {\n  publicId: xxx,\n  startDate:dd/mm/yyyy,\n  publicationDate:dd/mm/yyyy,\n  availableMatches: 1,\n   \n  }\n}
+return Pick {}
+return response
+@enduml

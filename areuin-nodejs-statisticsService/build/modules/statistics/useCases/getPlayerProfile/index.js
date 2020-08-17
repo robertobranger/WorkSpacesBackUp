@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getPlayerProfileController = exports.getPlayerProfile = void 0;
+const GetPlayerProfile_1 = require("./GetPlayerProfile");
+const repos_1 = require("../../repos");
+const GetPlayerProfileController_1 = require("./GetPlayerProfileController");
+const getPlayerProfile = new GetPlayerProfile_1.GetPlayerProfile(repos_1.fakePlayerProfileRepo);
+exports.getPlayerProfile = getPlayerProfile;
+const getPlayerProfileController = new GetPlayerProfileController_1.GetPlayerProfileController(getPlayerProfile);
+exports.getPlayerProfileController = getPlayerProfileController;

@@ -1,0 +1,26 @@
+{
+  "name": "areuin-nodejs-stats-api",
+  "version": "1.0.0",
+  "description": "Servicios de API para estadisticas de usuarios para areUin. Clientes: gamesAPI, Android apk and iOS apk.",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc -p . && node index.js",
+    "start:dev": "node ./node_modules/nodemon/bin/nodemon.js -e ts,yaml --exec \" npm run lint:fix && npm run start || exit 1\"",
+    "migrations:run": "ts-node ./node_modules/.bin/typeorm migration:run",
+    "migrations:create": "ts-node ./node_modules/.bin/typeorm migration:create -n",
+    "migrations:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "docker-api": "cross-env NODE_ENV=dev NODE_CONFIG_DIR=./config   ./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run dev-compile-n-run\"",
+    "test": "tsc -p . && swagger project test",
+    "dev-compile-n-run": "tsc -p . && node index.js",
+    "compile": "tsc -p ."
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-mung": "^0.5.1",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.2",
+    "typeorm": "^0.2.24",
+    "typescript": "^3.8.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "workbench.editor.highlightModifiedTabs": true,
+  "explorer.sortOrder": "type",
+  "files.trimFinalNewlines": true,
+  "breadcrumbs.icons": false,
+
+  //Settings for prettier on auto-save
+  "editor.formatOnSave": false,
+  "[javascript]": {
+      "editor.formatOnSave": true,
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  }
+}

@@ -1,0 +1,52 @@
+@startuml
+
+title <font color=red size=10>Actualizar Estatus de Matches (relacionados con Odds)</font> 
+
+boundary "WEB/Mobile" as ui order 5
+control odds as controlador order 10
+participant req order 12 
+participant utils order 20
+participant matchRepository as repo order 15
+
+ui -> controlador : [PUT] /matches/status {  \n  active: true,\n  moneyType: realMoney,\n  matchesId[123, 456, 789]}
+activate controlador
+controlador -> controlador : updateOddsStatus( req , res , next )
+note right  
+	Verificar que se actualicen todos los matches 
+	indicados por sus ids, pero se coloca el mismo estatus a todos.
+	Y solo aplican para un tipo de juego (RealMoney o PlayMoney)
+end note
+activate controlador
+controlador -> req : body[active]
+activate req
+return status
+controlador -> req : body[moneyType]
+activate req
+return moneyType
+controlador -> req : body[matchesIds]
+activate req
+return matchesIds
+controlador -> repo : updateStatus(matchesIds, moneyType, status)
+
+
+activate repo
+create Matches order 15
+repo -> Matches : create
+  activate Matches
+  loop map
+  repo -> Matches : 
+  alt moneyType === 'realMoney'
+    Matches -> Matches : [realMoney] = status
+  else moneyType === 'playMoney'
+    Matches -> Matches : [playMoney] = status
+  end
+
+end loop
+return matches
+
+  repo -> repo : save(matches)
+
+return response
+return response
+return response
+@enduml

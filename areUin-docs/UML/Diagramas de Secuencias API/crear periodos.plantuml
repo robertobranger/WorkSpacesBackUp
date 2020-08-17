@@ -1,0 +1,32 @@
+@startuml
+
+title <font color=red size=20>Crear Periodos</font> 
+boundary "WEB/Mobile" as UI
+control Periods as controlador
+participant res
+participant lodash
+participant utils
+participant PeriodRepository as repo
+
+
+UI -> controlador : [POST] {\n id: xx,\n oddsTypeName: 'three way',\n oddsTypeLabel: 'Ganador',\n periodName: 'FT',\n periodLabel: 'TC'\n}
+activate controlador
+controlador ->  res : body
+activate res
+return periods
+controlador -> lodash : map(periods,ids)
+activate lodash
+return ids
+controlador -> repo : checkIfRecordExistsByKey(ids, 'id');
+activate repo
+return idsExists
+alt FLUJO DE ERROR: Si existen alguno de los ids
+controlador -> UI : return next(resError.badRequest(`The id already exist on the periods records`))
+else flujo de exito
+controlador -> repo : createAndSave(periods)
+activate repo
+return savedPeriods
+return savedPeriods
+end
+
+@enduml

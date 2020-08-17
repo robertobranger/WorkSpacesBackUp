@@ -1,0 +1,16 @@
+{
+    "Usuarios":{
+        "String1":"Hola",
+        "String2":"Chao"
+    },
+    "Torneos":{
+        "String3":"¿Como estas?",
+        "String4":"Muy bien ¿y tu?"
+    },
+    "errors":{
+        "Login_attempt_without_credentials":"No puedes hacer esto",
+        "Ticket_purchase_attempt without money":"No puedes hacer aquello"
+    },
+    "pending_translation":{}
+}
+

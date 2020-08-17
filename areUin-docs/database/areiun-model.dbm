@@ -1,0 +1,2749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="1889,0" last-zoom="0.7"
+	 default-owner="postgres">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="tournaments">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<comment><![CDATA[Revisar este modelo.
+- Tiene el nombre de 'picks' actualmente en la base de datos]]></comment>
+	<position x="1280" y="1380"/>
+	<column name="id" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="pot">
+		<type name="decimal" length="9" precision="2"/>
+	</column>
+	<column name="start_date">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="publication_duration">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_tickets_per_tournament">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_tickets_per_user_per_tournament">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="registered_tickets">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="minimum_available_matches">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="minimum_available_bets">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="comision_per_ticket">
+		<type name="decimal" length="2" precision="2"/>
+	</column>
+	<column name="amount_to_pot_per_ticket">
+		<type name="decimal" length="9" precision="2"/>
+	</column>
+	<column name="reward_percentage">
+		<type name="decimal" length="2" precision="1"/>
+	</column>
+	<column name="winning_spots">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="relevance">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="max_quota">
+		<type name="numeric" length="5" precision="3"/>
+	</column>
+	<column name="is_big_tournament">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="has_special_jackpot">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="has_big_pot">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="tournament_pk" type="pk-constr" table="public.tournaments">
+		<tablespace name="pg_global"/>
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_tournament_profiles" index="25"/>
+		<object name="id_tournament_type" index="26"/>
+		<object name="tournament_status_id" index="24"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="tournament_profiles_fk" index="2"/>
+		<object name="tournament_status_fk" index="1"/>
+		<object name="tournament_type_fk" index="3"/>
+	</customidxs>
+</table>
+
+<table name="tickets">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2020" y="2680"/>
+	<column name="id" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="registration_date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="uinpoints">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="average_risk">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="deleted">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="picks_pk" type="pk-constr" table="public.tickets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="ticket_status_id" index="7"/>
+		<object name="tournaments_id" index="8"/>
+		<object name="users_id" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="ticket_status_fk" index="2"/>
+		<object name="tournaments_fk" index="3"/>
+		<object name="users_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="Lobbies_has_many_picks" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 src-table="public.tournaments"
+	 dst-table="public.tickets"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="2.58693" y="-16.275"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="52.2592" y="0.973439"/>
+	</label>
+</relationship>
+
+<table name="txodds_sports">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5160" y="160"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="display_name">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at" not-null="true">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="Sports_pk" type="pk-constr" table="public.txodds_sports">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="txodds_countries" hide-ext-attribs="true">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5740" y="160"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id" not-null="true">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="code">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="Countries_pk" type="pk-constr" table="public.txodds_countries">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="txodds_master_groups" hide-ext-attribs="true">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5480" y="400"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="Master_Groups_pk" type="pk-constr" table="public.txodds_master_groups">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="txodds_sports_id" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="txodds_sports_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="Sports_has_many_Master_Groups" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 src-table="public.txodds_sports"
+	 dst-table="public.txodds_master_groups"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="-7.3825" y="18.725"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-27.3825" y="-26.275"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="23.9742" y="10.8984"/>
+	</label>
+</relationship>
+
+<relationship name="Countries_has_many_Master_Groups" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 src-table="public.txodds_countries"
+	 dst-table="public.txodds_master_groups"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="7.21469" y="58.725"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="12.6175" y="48.725"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="-18.5347" y="10.8984"/>
+	</label>
+</relationship>
+
+<table name="txodds_minor_groups">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5800" y="660"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="50"/>
+	</column>
+	<column name="season_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="fullname">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="start_date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="end_date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="Minor_groups_pk" type="pk-constr" table="public.txodds_minor_groups">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="txodds_master_groups_id" index="10"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="txodds_master_groups_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="Master_Groups_has_many_Minor_groups" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e1e76b"
+	 src-table="public.txodds_master_groups"
+	 dst-table="public.txodds_minor_groups"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="29.5334" y="37.2616"/>
+	</label>
+</relationship>
+
+<table name="txodds_results_status">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5960" y="1480"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="results_status_pk" type="pk-constr" table="public.txodds_results_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="txodds_results">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5520" y="1440"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="cname">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="group_name">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="home_team">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="away_team">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="last_updated">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="time">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="results_pk" type="pk-constr" table="public.txodds_results">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="txodds_results_status_id" index="10"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="txodds_results_status_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="results_status_has_many_results" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 src-table="public.txodds_results_status"
+	 dst-table="public.txodds_results"
+	 src-required="false" dst-required="false"/>
+
+<table name="txodds_scores">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5540" y="1780"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="period_label">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="home_score">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="away_score">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="scores_pk" type="pk-constr" table="public.txodds_scores">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="txodds_results_id" index="7"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="txodds_results_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="results_has_many_scores" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 src-table="public.txodds_results"
+	 dst-table="public.txodds_scores"
+	 src-required="false" dst-required="false">
+	<label ref-type="src-label">
+		<position x="18.8213" y="-21.275"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-7.3825" y="-26.275"/>
+	</label>
+</relationship>
+
+<table name="txodds_matches">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5320" y="960"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="cname">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="display_name">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="home_team">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="away_team">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="time">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="real_money_status">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="play_money_status">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="group_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="matches_pk" type="pk-constr" table="public.txodds_matches">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="txodds_master_groups_id" index="13"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="txodds_master_groups_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="Master_Groups_has_many_matches" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ac9961"
+	 src-table="public.txodds_master_groups"
+	 dst-table="public.txodds_matches"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="148.36" y="6.54941"/>
+	</label>
+</relationship>
+
+<relationship name="minor_groups_has_many_matches" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a7b7f9"
+	 src-table="public.txodds_minor_groups"
+	 dst-table="public.txodds_matches"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="141.122" y="20.7393"/>
+	</label>
+</relationship>
+
+<relationship name="sports_has_many_matches" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#66d7e5"
+	 src-table="public.txodds_sports"
+	 dst-table="public.txodds_matches"
+	 src-required="false" dst-required="false"/>
+
+<table name="txodds_odds_types">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5220" y="1440"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="val">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="o1">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="o2">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="o3">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="odds_types_pk" type="pk-constr" table="public.txodds_odds_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="txodds_periods">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="5780" y="1060"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="odds_types_name">
+		<type name="varchar" length="20"/>
+		<comment><![CDATA[revisar por qué se definió ]]></comment>
+	</column>
+	<column name="odds_type_label">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="period_name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="period_label">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="periods_pk" type="pk-constr" table="public.txodds_periods">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="rewards_modes">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1740" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="rewards_modes_pk" type="pk-constr" table="public.rewards_modes">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="max_entries_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1860" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="max_tickets_per_tournament">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[id = 1, para Pick3, max_entry_type = Bajo, max_entries_per_tournament  6, max_ticket_per_user es 2
+id = 2, para Pick3, max_entry_type Alto, max_entries_per_tournament es 30, max_ticket_per_user es 3]]></comment>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="availble_tickets_intervals_pk" type="pk-constr" table="public.max_entries_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="max_bets_per_tickets_id" index="6"/>
+		<object name="max_entries_names_id" index="7"/>
+		<object name="rewards_modes_id" index="8"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="max_bets_per_tickets_fk" index="1"/>
+		<object name="max_entries_names_fk" index="2"/>
+		<object name="rewards_modes_fk" index="3"/>
+	</customidxs>
+</table>
+
+<table name="max_bets_per_tickets">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1380" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="max_bets_per_ticket">
+		<type name="integer" length="20"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="picks_types_pk" type="pk-constr" table="public.max_bets_per_tickets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ticket_values">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[cambiar nombre a 'entry_price']]></comment>
+	<position x="2100" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="comision_per_ticket">
+		<type name="decimal" length="2" precision="1"/>
+	</column>
+	<column name="amount_to_pot_per_ticket">
+		<type name="decimal" length="9" precision="2"/>
+	</column>
+	<column name="value">
+		<type name="decimal" length="9" precision="2"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="ticket_values_pk" type="pk-constr" table="public.ticket_values">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="users">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="920" y="2460"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="users_pk" type="pk-constr" table="public.users">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="matches">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3560" y="640"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="matches_pk" type="pk-constr" table="public.matches">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_championships" index="4"/>
+		<object name="id_match_status" index="5"/>
+		<object name="id_regions" index="3"/>
+		<object name="id_sports" index="2"/>
+		<object name="id_teams" index="6"/>
+		<object name="id_teams1" index="7"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="championships_fk" index="3"/>
+		<object name="match_status_fk" index="4"/>
+		<object name="regions_fk" index="2"/>
+		<object name="sports_fk" index="1"/>
+		<object name="teams_away" index="6"/>
+		<object name="teams_home" index="5"/>
+	</customidxs>
+</table>
+
+<table name="available_periods">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3560" y="1080"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="periods_pk" type="pk-constr" table="public.available_periods">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_results_status" index="2"/>
+		<object name="matches_id" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="matches_fk" index="1"/>
+		<object name="results_status_fk" index="2"/>
+	</customidxs>
+</table>
+
+<table name="available_bet_types">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3120" y="1400"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="val">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="available_bet_types_pk" type="pk-constr" table="public.available_bet_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="available_periods_id" index="2"/>
+		<object name="bet_types_id" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="available_periods_fk" index="1"/>
+		<object name="bet_types_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="matches_areuin_has_many_periods_areuin" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#633ec3"
+	 src-table="public.matches"
+	 dst-table="public.available_periods"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="141.739" y="5.81434"/>
+	</label>
+</relationship>
+
+<relationship name="periods_areuin_has_many_odd_types_areuin" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#276317"
+	 src-table="public.available_periods"
+	 dst-table="public.available_bet_types"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-80.0478" y="-21.6857"/>
+	</label>
+</relationship>
+
+<relationship name="users_has_many_picks" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#186bd6"
+	 src-table="public.users"
+	 dst-table="public.tickets"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="20.7402" y="1.53671"/>
+	</label>
+</relationship>
+
+<table name="user_favorite_tournaments">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="220" y="1740"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="user_favorite_pick_lobbies_pk" type="pk-constr" table="public.user_favorite_tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="users_id" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="users_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="users_has_many_user_favorite_pick_lobbies" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e89e14"
+	 src-table="public.users"
+	 dst-table="public.user_favorite_tournaments"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="11.1625" y="41.4031"/>
+	</label>
+</relationship>
+
+<relationship name="pick_lobbies_has_many_user_favorite_pick_lobbies" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d0c3d7"
+	 src-table="public.tournaments"
+	 dst-table="public.user_favorite_tournaments"
+	 src-required="false" dst-required="false"/>
+
+<table name="results">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[es por ahora una tabla de diseño]]></comment>
+	<position x="3760" y="1340"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="home_team_points">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="away_team_points">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="results_pk" type="pk-constr" table="public.results">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_available_periods" index="7"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="available_periods_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="bet_types">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Describe el tipo de pronostico]]></comment>
+	<position x="2740" y="1420"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="odd_types_pk" type="pk-constr" table="public.bet_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="odd_types_has_many_odd_types_available_areuin" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fab8c7"
+	 src-table="public.bet_types"
+	 dst-table="public.available_bet_types"
+	 src-required="false" dst-required="false"/>
+
+<table name="categories">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Son las categorías que permiten crear agrupaciones de deportes y regiones]]></comment>
+	<position x="2460" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="categories_pk" type="pk-constr" table="public.categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="ticket_status">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1880" y="2240"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="user_favorite_pick_lobbies_pk_1" type="pk-constr" table="public.ticket_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="pick_status_has_many_picks" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#8329e5"
+	 src-table="public.ticket_status"
+	 dst-table="public.tickets"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="matches_has_many_periods" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#86653e"
+	 src-table="public.txodds_matches"
+	 dst-table="public.txodds_periods"
+	 src-required="false" dst-required="false"/>
+
+<table name="sports">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3400" y="60"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="sports_pk" type="pk-constr" table="public.sports">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="period_names">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2700" y="1040"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="periods__pk" type="pk-constr" table="public.period_names">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tournament_profiles">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1360" y="780"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="kpi_total_tickets">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="kpi_tickets_by_maxentries_percentage">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="picks_lobbies_caracteristics_pk" type="pk-constr" table="public.tournament_profiles">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="categories_id" index="4"/>
+		<object name="max_bets_per_tickets_id" index="7"/>
+		<object name="max_entries_names_id" index="6"/>
+		<object name="rewards_modes_id" index="8"/>
+		<object name="ticket_values_id" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="categories_fk" index="1"/>
+		<object name="max_bets_per_tickets_fk" index="4"/>
+		<object name="max_entries_names_fk" index="3"/>
+		<object name="rewards_modes_fk" index="5"/>
+		<object name="ticket_values_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="categories_has_many_picks_lobbies_caracteristics" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#008138"
+	 src-table="public.categories"
+	 dst-table="public.tournament_profiles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-58.0809" y="102.016"/>
+	</label>
+</relationship>
+
+<relationship name="ticket_values_has_many_picks_lobbies_caracteristics" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3f8819"
+	 src-table="public.ticket_values"
+	 dst-table="public.tournament_profiles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="65.3697" y="53.2022"/>
+	</label>
+</relationship>
+
+<table name="wallet">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="3760"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="amount">
+		<type name="decimal" length="9" dimension="2" precision="2"/>
+	</column>
+	<constraint name="wallet_pk" type="pk-constr" table="public.wallet">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="money_movements">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="80" y="3740"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="amount">
+		<type name="decimal" length="9" precision="2"/>
+	</column>
+	<constraint name="expends_pk" type="pk-constr" table="public.money_movements">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="money_movement_status_id" index="4"/>
+		<object name="wallet_id" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="money_movement_status_fk" index="2"/>
+		<object name="wallet_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="wallet_has_many_expends" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3ca3e9"
+	 src-table="public.wallet"
+	 dst-table="public.money_movements"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-24.0467" y="-19.1857"/>
+	</label>
+</relationship>
+
+<table name="money_movement_status">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="520" y="3960"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="expend_status_pk" type="pk-constr" table="public.money_movement_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="expend_status_has_many_expends" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#c3a5d3"
+	 src-table="public.money_movement_status"
+	 dst-table="public.money_movements"
+	 src-required="false" dst-required="false"/>
+
+<table name="vanity_items">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="4020"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="vanity_items_pk" type="pk-constr" table="public.vanity_items">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="Gastos" color="#ef2929" font-size="9">
+	<position x="2360" y="1100"/>
+	<comment><![CDATA[Los gastos tienen un objeto/elemento asociado que describe la razon del mismo y su monto]]></comment>
+</textbox>
+
+<table name="tournament_status">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2020" y="1960"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="uuid" length="0"/>
+	</column>
+	<column name="name">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="pick_lobbies_status_pk" type="pk-constr" table="public.tournament_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="pick_lobbies_status_has_many_pick_lobbies" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0bae7d"
+	 src-table="public.tournament_status"
+	 dst-table="public.tournaments"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="34.6381" y="11.3306"/>
+	</label>
+</relationship>
+
+<relationship name="picks_types_has_many_max_entries" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d4f938"
+	 src-table="public.max_bets_per_tickets"
+	 dst-table="public.max_entries_rules"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-26.3375" y="29.6225"/>
+	</label>
+</relationship>
+
+<table name="ticket_values_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Los ticket_values permitidos por tipo de pick, al momento de crear un pick_lobby_profile]]></comment>
+	<position x="1460" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="ticket_values_permited_pk" type="pk-constr" table="public.ticket_values_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="max_bets_per_tickets_id" index="3"/>
+		<object name="ticket_values_id" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="max_bets_per_tickets_fk" index="2"/>
+		<object name="ticket_values_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="ticket_values_has_many_ticket_values_permited" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#8d0524"
+	 src-table="public.ticket_values"
+	 dst-table="public.ticket_values_rules"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="443.122" y="-72.6583"/>
+	</label>
+</relationship>
+
+<relationship name="picks_types_has_many_ticket_values_permited" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a9cf19"
+	 src-table="public.max_bets_per_tickets"
+	 dst-table="public.ticket_values_rules"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-256.617" y="-47.4005"/>
+	</label>
+</relationship>
+
+<table name="reward_percentages_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="580" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="reward_percentages_pk" type="pk-constr" table="public.reward_percentages_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_reward_percentages" index="3"/>
+		<object name="rewards_modes_id" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="reward_percentages_fk" index="2"/>
+		<object name="rewards_modes_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="max_entries_names">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="980" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="public_id">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="max_entries_names_pk" type="pk-constr" table="public.max_entries_names">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="max_entries_names_has_many_max_entries_rules" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fce94f"
+	 src-table="public.max_entries_names"
+	 dst-table="public.max_entries_rules"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rewards_modes_has_many_max_entries_rules" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#810122"
+	 src-table="public.rewards_modes"
+	 dst-table="public.max_entries_rules"
+	 src-required="false" dst-required="false"/>
+
+<table name="tournament_activation_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1020" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="minimum_available_matches">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="minimum_available_bets">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="active">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="tournament_activation_rules_pk" type="pk-constr" table="public.tournament_activation_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="max_bets_per_tickets_id" index="5"/>
+		<object name="max_entries_names_id" index="4"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="max_bets_per_tickets_fk" index="2"/>
+		<object name="max_entries_names_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="max_entries_names_has_many_tournament_activation_rules" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b6941b"
+	 src-table="public.max_entries_names"
+	 dst-table="public.tournament_activation_rules"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="picks_types_has_many_tournament_activation_rules" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f326b8"
+	 src-table="public.max_bets_per_tickets"
+	 dst-table="public.tournament_activation_rules"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="max_entries_names_has_many_tournament_profiles" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#37eb04"
+	 src-table="public.max_entries_names"
+	 dst-table="public.tournament_profiles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-35.3131" y="-24.8523"/>
+	</label>
+</relationship>
+
+<relationship name="picks_types_has_many_tournament_profiles" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0cc469"
+	 src-table="public.max_bets_per_tickets"
+	 dst-table="public.tournament_profiles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="7.17993" y="25.1475"/>
+	</label>
+</relationship>
+
+<relationship name="rewards_modes_has_many_tournament_profiles" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3ee1d3"
+	 src-table="public.rewards_modes"
+	 dst-table="public.tournament_profiles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="58.5022" y="-26.8522"/>
+	</label>
+</relationship>
+
+<relationship name="rewards_modes_has_many_reward_percentages_rules" type="rel1n"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#27ca74"
+	 src-table="public.rewards_modes"
+	 dst-table="public.reward_percentages_rules"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="periods_available_has_many_results" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#14b992"
+	 src-table="public.available_periods"
+	 dst-table="public.results"
+	 src-required="false" dst-required="false"/>
+
+<table name="regions">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3780" y="60"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="regions_pk" type="pk-constr" table="public.regions">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="championships">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3580" y="340"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="stage">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="year">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="leagues_pk" type="pk-constr" table="public.championships">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_regions" index="5"/>
+		<object name="id_sports" index="4"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="regions_fk" index="2"/>
+		<object name="sports_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="sports_has_many_leagues" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#aee983"
+	 src-table="public.sports"
+	 dst-table="public.championships"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="sports_has_many_matches_areuin" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#697c6f"
+	 src-table="public.sports"
+	 dst-table="public.matches"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="leagues_has_many_matches_areuin" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3bd346"
+	 src-table="public.championships"
+	 dst-table="public.matches"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="regions_has_many_matches_areuin" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#489a4b"
+	 src-table="public.regions"
+	 dst-table="public.matches"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="113.835" y="113.314"/>
+	</label>
+</relationship>
+
+<table name="bet_values">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3320" y="1820"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="bet_name">
+		<type name="varchar" length="15" dimension="1"/>
+	</column>
+	<column name="won">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="odd_value">
+		<type name="decimal" length="8" precision="4"/>
+	</column>
+	<column name="probability">
+		<type name="numeric" length="4" precision="4"/>
+	</column>
+	<column name="created_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<column name="updated_at">
+		<type name="timestamp" length="0" precision="6"/>
+	</column>
+	<constraint name="bets_values_pk" type="pk-constr" table="public.bet_values">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_available_bet_types" index="7"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="available_bet_types_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="regions_has_many_leagues" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9b2540"
+	 src-table="public.regions"
+	 dst-table="public.championships"
+	 src-required="false" dst-required="false"/>
+
+<table name="reward_percentages">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="540" y="520"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="reward_percentage">
+		<type name="numeric" length="2" precision="1"/>
+	</column>
+	<column name="frequency_factor">
+		<type name="numeric" length="2" precision="1"/>
+	</column>
+	<constraint name="reward_percentages_pk_1" type="pk-constr" table="public.reward_percentages">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="reward_percentages_has_many_reward_percentages_rules" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ba2f9e"
+	 src-table="public.reward_percentages"
+	 dst-table="public.reward_percentages_rules"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="picks_types_has_many_reward_percentages_rules" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#1f0b07"
+	 src-table="public.max_bets_per_tickets"
+	 dst-table="public.reward_percentages_rules"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="78.1703" y="25.037"/>
+	</label>
+</relationship>
+
+<table name="service_providers">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="4860" y="460"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="provider_name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="provider_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="service_providers_pk" type="pk-constr" table="public.service_providers">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="service_provider_matches">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="4940" y="940"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="service_provider_match_pk" type="pk-constr" table="public.service_provider_matches">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_txodds_sports" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="txodds_sports_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="txodds_sports_has_many_service_provider_match" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#16d52d"
+	 src-table="public.txodds_sports"
+	 dst-table="public.service_provider_matches"
+	 src-required="false" dst-required="false"/>
+
+<table name="teams">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3080" y="640"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="teams_pk" type="pk-constr" table="public.teams">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="user_teams_preferences">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1640" y="3140"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="counter">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="user_bets_teams_pk" type="pk-constr" table="public.user_teams_preferences">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_teams" index="2"/>
+		<object name="id_users" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="teams_fk" index="1"/>
+		<object name="users_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="teams_has_many_user_bets_teams" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0eb662"
+	 src-table="public.teams"
+	 dst-table="public.user_teams_preferences"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="users_has_many_user_bets_teams" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fe085d"
+	 src-table="public.users"
+	 dst-table="public.user_teams_preferences"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_tournament_recommendations">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="80" y="2420"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="table_inspect_user_preferences_pk" type="pk-constr" table="public.user_tournament_recommendations">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_tournaments" index="1"/>
+		<object name="id_users" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="tournaments_fk" index="1"/>
+		<object name="users_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="tournament_has_many_user_recommendations" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#63ca97"
+	 src-table="public.tournaments"
+	 dst-table="public.user_tournament_recommendations"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="users_has_many_user_recommendations" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#210ac5"
+	 src-table="public.users"
+	 dst-table="public.user_tournament_recommendations"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_ticket_values_preferences">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1640" y="3360"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="counter">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="user_ticket_values_preferences_pk" type="pk-constr" table="public.user_ticket_values_preferences">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="nota equipos de usuario" font-size="9">
+	<position x="720" y="1940"/>
+	<comment><![CDATA[NOTA: Se espera definir como calcular los equipos preferidos del usurario]]></comment>
+</textbox>
+
+<relationship name="users_has_many_user_ticket_values_preferences" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#759a89"
+	 src-table="public.users"
+	 dst-table="public.user_ticket_values_preferences"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="ticket_values_has_many_user_ticket_values_preferences" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f724d2"
+	 src-table="public.ticket_values"
+	 dst-table="public.user_ticket_values_preferences"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="1.8198" y="208.816"/>
+	</label>
+</relationship>
+
+<table name="max_tickets_per_users_per_tournaments_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2240" y="60"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="lower_tickets_per_tournament_bound">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_tickets_per_user_per_tournament">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="max_tickets_per_users_per_tournaments_pk" type="pk-constr" table="public.max_tickets_per_users_per_tournaments_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tournament_profiles_has_many_tournaments" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#71eef9"
+	 src-table="public.tournament_profiles"
+	 dst-table="public.tournaments"
+	 src-required="false" dst-required="false"/>
+
+<table name="sports_periods_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3160" y="1000"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+		<comment><![CDATA[Clave para traducir esta palabra a distintos idiomas]]></comment>
+	</column>
+	<column name="order">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[Secuencia en la que suceden los periodos]]></comment>
+	</column>
+	<column name="might_not_happen">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Extratiempo y penalties: might_not_happen= true
+Tiempos reglamentarios: might_not_happen=false]]></comment>
+	</column>
+	<constraint name="sports_periods_rules_pk" type="pk-constr" table="public.sports_periods_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_period_names" index="4"/>
+		<object name="id_sports" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="period_names_fk" index="2"/>
+		<object name="sports_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="periods_names_has_many_sports_periods_rules" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#981f2c"
+	 src-table="public.period_names"
+	 dst-table="public.sports_periods_rules"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="sports_has_many_sports_periods_rules" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#c7dad1"
+	 src-table="public.sports"
+	 dst-table="public.sports_periods_rules"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="available_bet_types_has_many_bets_values" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e22e19"
+	 src-table="public.available_bet_types"
+	 dst-table="public.bet_values"
+	 src-required="false" dst-required="false"/>
+
+<table name="results_status">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3960" y="1000"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="results_status_pk" type="pk-constr" table="public.results_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="results_status_has_many_periods_available" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ef2929"
+	 src-table="public.results_status"
+	 dst-table="public.available_periods"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_bet_statistics">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="580" y="3060"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="total_odds_sum">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="total_won_odds_sum">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="won_bets_quantity">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="total_bets_quantity">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="uinrisk_probability">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="uinrisk_odd">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="general_ratio">
+		<type name="numeric" length="5" precision="3"/>
+	</column>
+	<column name="statistical_ratio">
+		<type name="numeric" length="6" precision="3"/>
+	</column>
+	<constraint name="user_bet_statistics_pk" type="pk-constr" table="public.user_bet_statistics">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_users" index="9"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="user_bet_statistics_uq" index="1"/>
+		<object name="users_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="user_statistics_has_one_users" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#309564"
+	 src-table="public.users"
+	 dst-table="public.user_bet_statistics"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_extra_statistics">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="980" y="3220"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="total_playcash">
+		<type name="numeric" length="12"/>
+	</column>
+	<column name="weekly_playcash">
+		<type name="numeric" length="12"/>
+	</column>
+	<column name="spent_playcash">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="ranking_factor">
+		<type name="numeric" length="12"/>
+	</column>
+	<column name="global_position">
+		<type name="numeric" length="8"/>
+	</column>
+	<column name="country_position">
+		<type name="numeric" length="8"/>
+	</column>
+	<constraint name="user_extra_statistics_pk" type="pk-constr" table="public.user_extra_statistics">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_uinlevels" index="8"/>
+		<object name="id_users" index="7"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="uinlevels_fk" index="2"/>
+		<object name="user_extra_statistics_uq" index="1"/>
+		<object name="users_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="user_extra_statistics_has_one_users" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e8d645"
+	 src-table="public.users"
+	 dst-table="public.user_extra_statistics"
+	 src-required="false" dst-required="false"/>
+
+<table name="uinlevels">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1240" y="3760"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="sub_level">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="playcash_needed">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="uinlevels_pk" type="pk-constr" table="public.uinlevels">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="uinlevels_has_many_user_extra_statistics" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e58f6b"
+	 src-table="public.uinlevels"
+	 dst-table="public.user_extra_statistics"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_tickets_by_maxbets">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1640" y="3480"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="bought_tickets_quantity">
+		<type name="numeric" length="5"/>
+	</column>
+	<column name="won_tickets_quantity">
+		<type name="numeric" length="5"/>
+	</column>
+	<column name="win_ratio">
+		<type name="numeric" length="5" precision="3"/>
+	</column>
+	<column name="won_gold_trophies">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="won_silver_trophies">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="won_bronze_trophies">
+		<type name="numeric" length="4"/>
+	</column>
+	<constraint name="user_statistics_statistics_by_max_bets_per_ticket_pk" type="pk-constr" table="public.user_tickets_by_maxbets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_max_bets_per_tickets" index="7"/>
+		<object name="id_user_extra_statistics" index="8"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="max_bets_per_tickets_fk" index="0"/>
+		<object name="user_extra_statistics_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="max_bets_per_tickets_has_many_user_statistics_statistics_by_pic" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a63b99"
+	 src-table="public.max_bets_per_tickets"
+	 dst-table="public.user_tickets_by_maxbets"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="user_extra_statistics_has_many_user_statistics_statistics_by_pi" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#31c8f7"
+	 src-table="public.user_extra_statistics"
+	 dst-table="public.user_tickets_by_maxbets"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_tickets_by_category">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1640" y="3720"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="bought_tickets_quantity">
+		<type name="numeric" length="4"/>
+	</column>
+	<column name="won_tickets_quantity">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="win_ratio">
+		<type name="numeric" length="5" precision="3"/>
+	</column>
+	<constraint name="user_statistics_tickets_by_category_pk" type="pk-constr" table="public.user_tickets_by_category">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_categories" index="4"/>
+		<object name="id_users" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="categories_fk" index="1"/>
+		<object name="users_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="categories_has_many_user_statistics_tickets_by_category" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#841bc7"
+	 src-table="public.categories"
+	 dst-table="public.user_tickets_by_category"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_bets_by_sport">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1660" y="4020"/>
+	<column name="id">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="bet_quantity">
+		<type name="numeric" length="5"/>
+	</column>
+	<column name="percentage_by_sport">
+		<type name="smallint" length="0"/>
+	</column>
+
+	<customidxs object-type="column">
+		<object name="id_sports" index="3"/>
+		<object name="id_users" index="4"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="sports_fk" index="0"/>
+		<object name="users_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="sports_has_many_user_bets_by_sport" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ba8644"
+	 src-table="public.sports"
+	 dst-table="public.user_bets_by_sport"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="users_has_many_user_bets_by_sport" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b6df0c"
+	 src-table="public.users"
+	 dst-table="public.user_bets_by_sport"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="users_has_many_user_tickets_by_category" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#dc6dba"
+	 src-table="public.users"
+	 dst-table="public.user_tickets_by_category"
+	 src-required="false" dst-required="false"/>
+
+<table name="user_monitor_statistics">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="2960"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="open_app_rate">
+		<type name="numeric" length="8"/>
+	</column>
+	<column name="referal_code">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="activity_status">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="abnormal_behavior_flag">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="monitor_statistics_pk" type="pk-constr" table="public.user_monitor_statistics">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="user_monitor_statistics_has_one_users" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#4da08c"
+	 src-table="public.users"
+	 dst-table="public.user_monitor_statistics"
+	 src-required="false" dst-required="false"/>
+
+<table name="trending_tournaments">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="220" y="1380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="trending_tournaments_pk" type="pk-constr" table="public.trending_tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="trending_tournaments_has_one_tournaments" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#5a5e7b"
+	 src-table="public.tournaments"
+	 dst-table="public.trending_tournaments"
+	 src-required="false" dst-required="false"/>
+
+<table name="trending_satelites">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="240" y="1540"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="trending_satelites_pk" type="pk-constr" table="public.trending_satelites">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="trending_satelites_has_one_tournaments" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f56b8f"
+	 src-table="public.tournaments"
+	 dst-table="public.trending_satelites"
+	 src-required="false" dst-required="false"/>
+
+<table name="last_chance_tournaments">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="220" y="1200"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="last_chance_tournaments_pk" type="pk-constr" table="public.last_chance_tournaments">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_tournaments" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="last_chance_tournaments_uq" index="1"/>
+		<object name="tournaments_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="last_chance_tournaments_has_one_tournaments" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#26a98e"
+	 src-table="public.tournaments"
+	 dst-table="public.last_chance_tournaments"
+	 src-required="false" dst-required="false"/>
+
+<table name="misc_rules">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="user_notification_pending_fill_ticket_time">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_creation_filled_tournament_rule">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="auto_creation_filled_tournaments_max_entries">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_creation_filled_tournament_fill_percentage">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="auto_asign_max_quota_rule">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="max_quota_1">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="max_quota_2">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="ocurrence_percentage_quota_max_1">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="ocurrance_percentage_quota_max_2">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="minimum_registered_tickets_to_hide_max_entry">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="tournament_filled_percentage_to_reshow_max_entry">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="exchange_rate_cash_to_money">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="minimum_cash_to_exchange">
+		<type name="numeric" length="0"/>
+	</column>
+	<constraint name="misc_rules_pk" type="pk-constr" table="public.misc_rules">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tournament_type">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2320" y="1520"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="max_bets_per_ticket_lower_bound">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[
+]]></comment>
+	</column>
+	<column name="max_bets_per_ticket_upper_bound">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="tournament_type_pk" type="pk-constr" table="public.tournament_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tournament_type_has_many_tournaments" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#677c3c"
+	 src-table="public.tournament_type"
+	 dst-table="public.tournaments"
+	 src-required="false" dst-required="false"/>
+
+<table name="sports_in_category">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2920" y="220"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="categories_contents_pk" type="pk-constr" table="public.sports_in_category">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_categories" index="1"/>
+		<object name="id_championships" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="categories_fk" index="1"/>
+		<object name="championships_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="categories_has_many_categories_contents" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#5772fd"
+	 src-table="public.categories"
+	 dst-table="public.sports_in_category"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="championships_has_many_categories_contents" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9fdfae"
+	 src-table="public.championships"
+	 dst-table="public.sports_in_category"
+	 src-required="false" dst-required="false"/>
+
+<table name="bet_values_in_tickets">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2540" y="2640"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="bet_values_in_tickets_pk" type="pk-constr" table="public.bet_values_in_tickets">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tickets_has_many_bet_values_in_tickets" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83c2d4"
+	 src-table="public.tickets"
+	 dst-table="public.bet_values_in_tickets"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="bet_values_has_many_bet_values_in_tickets" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#daca19"
+	 src-table="public.bet_values"
+	 dst-table="public.bet_values_in_tickets"
+	 src-required="false" dst-required="false"/>
+
+<table name="championships_in_categories" hide-ext-attribs="true">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3000" y="400"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="championships_in_categories_pk" type="pk-constr" table="public.championships_in_categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_categories" index="2"/>
+		<object name="id_championships" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="categories_fk" index="2"/>
+		<object name="championships_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="championships_has_many_championships_in_categories" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#50532b"
+	 src-table="public.championships"
+	 dst-table="public.championships_in_categories"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="categories_has_many_championships_in_categories" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#dfa843"
+	 src-table="public.categories"
+	 dst-table="public.championships_in_categories"
+	 src-required="false" dst-required="false"/>
+
+<table name="regions_in_categories">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2780" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="regions_in_categories_pk" type="pk-constr" table="public.regions_in_categories">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="categories_has_many_regions_in_categories" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3cfd25"
+	 src-table="public.categories"
+	 dst-table="public.regions_in_categories"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="regions_has_many_regions_in_categories" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3dc646"
+	 src-table="public.regions"
+	 dst-table="public.regions_in_categories"
+	 src-required="false" dst-required="false"/>
+
+<table name="match_status">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3960" y="760"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="match_status_pk" type="pk-constr" table="public.match_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="match_status_has_many_matches" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0d9b24"
+	 src-table="public.match_status"
+	 dst-table="public.matches"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="teams_home_has_many_matches" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_home"
+	 custom-color="#151fb6"
+	 src-table="public.teams"
+	 dst-table="public.matches"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="teamsaway_away_has_many_matches" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_away"
+	 custom-color="#056a19"
+	 src-table="public.teams"
+	 dst-table="public.matches"
+	 src-required="true" dst-required="false"/>
+
+<table name="positions_table">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1920" y="1320"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="position">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="prize_amount">
+		<type name="numeric" length="20" precision="2"/>
+	</column>
+	<constraint name="prize_tables_pk" type="pk-constr" table="public.positions_table">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_tickets" index="4"/>
+		<object name="id_tournaments" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="positions_table_uq" index="3"/>
+		<object name="tickets_fk" index="2"/>
+		<object name="tournaments_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="tournaments_has_many_prize_tables" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#91346f"
+	 src-table="public.tournaments"
+	 dst-table="public.positions_table"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="prize_tables_has_one_tickets" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#6a7e46"
+	 src-table="public.tickets"
+	 dst-table="public.positions_table"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="sports_periods_rules_has_many_available_periods" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#85914f"
+	 src-table="public.sports_periods_rules"
+	 dst-table="public.available_periods"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

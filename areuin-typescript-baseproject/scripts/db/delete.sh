@@ -1,0 +1,1 @@
+#Database deletion script
